@@ -4,13 +4,13 @@ services:
   frontend:
     image: fortunafusionx-frontend
     build:
-      context: ./path-to-frontend
+      context: ./frontend/fortunafusionx-frontend
     ports:
       - "8080:80"
 
   backend:
     image: fortunafusionx-backend
     build:
-      context: ./path-to-backend
+      context: ./backend/fortunafusionx-backend
     ports:
       - "8081:80"
