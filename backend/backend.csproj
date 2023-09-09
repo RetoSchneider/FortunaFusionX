@@ -4,7 +4,7 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>fortunafusionx_backend</RootNamespace>
+    <RootNamespace>backend</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
