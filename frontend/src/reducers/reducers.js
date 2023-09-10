@@ -1,17 +1,16 @@
-const initialState = {
-  data: null,
-};
-
-function rootReducer(state = initialState, action) {
+const counterReducer = (state = 0, action) => {
   switch (action.type) {
-    case 'SET_DATA':
-      return {
-        ...state,
-        data: action.payload,
-      };
+    case INCREMENT_COUNTER:
+      return state + 1;
     default:
       return state;
   }
-}
+};
+
+import { combineReducers } from 'redux';
+
+const rootReducer = combineReducers({
+  counter: counterReducer,
+});
 
 export default rootReducer;

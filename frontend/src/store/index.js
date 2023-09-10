@@ -1,5 +1,9 @@
-import { createStore } from 'redux';
-import rootReducer from '../reducers/rootReducer';
+import { createStore, combineReducers } from '@reduxjs.toolkit';
+import loginReducer from '../reducers/loginReducer';
+
+const rootReducer = combineReducers({
+    login: loginReducer
+});
 
 const store = createStore(rootReducer);
 
