@@ -3,8 +3,13 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}'],
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'cabin': ['Cabin', 'sans-serif']
+      },
+    },
   },
+  variants: {},
   plugins: [],
 }
 
