@@ -2,15 +2,15 @@ version: '3'
 
 services:
   frontend:
-    image: fortunafusionx-frontend
+    image: frontend
     build:
-      context: ./frontend/fortunafusionx-frontend
+      context: ./frontend
     ports:
       - "8080:80"
 
   backend:
-    image: fortunafusionx-backend
+    image: backend
     build:
-      context: ./backend/fortunafusionx-backend
+      context: ./backend
     ports:
       - "8081:80"
