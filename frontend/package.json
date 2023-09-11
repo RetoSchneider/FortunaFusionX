@@ -1,5 +1,5 @@
 {
-  "name": "fortunafusionx-frontend",
+  "name": "frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,12 +8,16 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^10.4.15",
     "css-select": "^5.1.0",
+    "postcss-cli": "^10.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
+    "sd-tailwindcss-transformer": "^1.4.0",
     "svgo": "^3.0.2",
+    "tailwindcss": "^3.3.3",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -24,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:css": "postcss src/tailwind.css -o src/index.css"
   },
   "eslintConfig": {
     "extends": [
