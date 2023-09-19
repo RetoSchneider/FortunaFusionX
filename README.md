@@ -1,2 +1,2 @@
-# FortunaFusion
+# Fortuna Fusion X
 The ultimate lottery generator
