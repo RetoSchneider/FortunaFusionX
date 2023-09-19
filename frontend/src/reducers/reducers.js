@@ -7,7 +7,7 @@ const counterReducer = (state = 0, action) => {
   }
 };
 
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 const rootReducer = combineReducers({
   counter: counterReducer,
