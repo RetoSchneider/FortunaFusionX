@@ -3,11 +3,11 @@ import LogoText from "../../assets/fortuna_fusion_x_logo_text_invisible.png";
 
 const TopBar = () => {
   return (
-    <div className="flex items-center justify-between flex-wrap w-full h-auto px-10 py-4 shadow-md bg-teal-50 border-b border-gray-300">
-      <div className="flex items-center space-x-8 mb-2 sm:mb-0">
+    <div className="flex items-center justify-between flex-wrap w-full h-auto px-6 py-4 shadow-md bg-teal-50 border-b border-gray-300">
+      <div className="flex items-center space-x-12 mb-2 sm:mb-0">
         <img
           src={LogoText}
-          alt="Fortuna Fusion X Logo"
+          alt="Fortuna Fusion X Logo Text"
           className="h-10 w-auto"
         />
       </div>
