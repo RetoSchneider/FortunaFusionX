@@ -7,7 +7,7 @@ const MainPageLayout = ({ children }) => {
   return (
     <div className="flex flex-col h-screen relative">
       <TopBar />
-      <div className="flex-grow flex pt-1 overflow-y-auto">
+      <div className="flex-grow flex overflow-y-auto">
         <LeftSideBar />
         <div className="flex-grow overflow-y-auto">{children}</div>
       </div>
