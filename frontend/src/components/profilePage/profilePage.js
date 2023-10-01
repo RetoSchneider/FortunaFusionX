@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import backgroundImage from "../../assets/fortuna_fusion_x_logo_no_text.png";
 
 const UserProfile = () => {
   const [username, setUsername] = useState("");
@@ -6,8 +7,11 @@ const UserProfile = () => {
   const [email, setEmail] = useState("");
 
   return (
-<div className="flex flex-col items-center justify-center min-w-full min-h-full bg-teal-50">
-      <div className="w-full max-w-lg p-8 m-4 bg-white shadow-md rounded-md border border-gray-300">
+    <div
+      className="flex flex-col items-center justify-center min-w-full min-h-full bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <div className="w-full max-w-lg p-8 m-4 bg-gray-50 shadow-md rounded-md border border-gray-300">
         <h1 className="mb-8 text-2xl font-cabin font-bold text-center text-black">
           User Profile
         </h1>

@@ -4,7 +4,7 @@ import "./mainPageBottomBar.css";
 
 const MainPageBottomBar = () => {
   return (
-    <div className="flex items-center justify-between flex-wrap w-full h-auto px-6 py-4 shadow-inner-t bg-teal-50 border-t border-gray-300">
+    <div className="flex items-center justify-between flex-wrap w-full h-auto px-6 py-4 bg-teal-50">
       <div className="flex items-center space-x-8 text-sm">
         <img src={Logo} alt="Fortuna Fusion X Logo" className="h-10 w-auto" />
         <div className="flex space-x-6">
