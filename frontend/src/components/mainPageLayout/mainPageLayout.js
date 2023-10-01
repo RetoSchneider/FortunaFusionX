@@ -1,6 +1,7 @@
 import React from "react";
 import TopBar from "../mainPage/mainPageTopBar";
 import LeftSideBar from "../mainPage/mainPageLeftSideBar";
+import RightSideBar from "../mainPage/mainPageRightSideBar";
 import BottomBar from "../mainPage/mainPageBottomBar";
 
 const MainPageLayout = ({ children }) => {
@@ -10,6 +11,7 @@ const MainPageLayout = ({ children }) => {
       <div className="flex-grow flex overflow-y-auto">
         <LeftSideBar />
         <div className="flex-grow overflow-y-auto">{children}</div>
+        <RightSideBar />
       </div>
       <div className="bottom-0 w-screen relative">
         <BottomBar />
