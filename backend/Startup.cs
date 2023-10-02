@@ -23,9 +23,20 @@ namespace fortunafusionx.backend
         {
             services.AddControllers();
 
+            services.AddHttpsRedirection(options =>
+            {
+                options.HttpsPort = 7241;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
                     new MySqlServerVersion(new Version(8, 0, 34))));
+
+            var jwtKey = Configuration["Jwt:Key"];
+            if (string.IsNullOrEmpty(jwtKey))
+            {
+                throw new ArgumentNullException(nameof(jwtKey), "Jwt:Key must be set in the configuration.");
+            }
 
             services.AddAuthentication(options =>
             {
@@ -42,7 +53,7 @@ namespace fortunafusionx.backend
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["Jwt:Issuer"],
                     ValidAudience = Configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
                 };
             });
         }
