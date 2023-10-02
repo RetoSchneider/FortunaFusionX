@@ -8,5 +8,5 @@ const appRoot = ReactDOM.createRoot(root);
 appRoot.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
