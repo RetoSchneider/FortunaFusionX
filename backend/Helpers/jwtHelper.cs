@@ -10,7 +10,23 @@ public static class JwtHelper
 {
     public static string GenerateJwtToken(User user, IConfiguration Configuration)
     {
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]));
+        if (user == null) 
+        {
+            throw new ArgumentNullException(nameof(user), "User cannot be null");
+        }
+
+        if (string.IsNullOrEmpty(user.Username))
+        {
+            throw new ArgumentNullException(nameof(user.Username), "Username cannot be null or empty");
+        }
+
+        var jwtKey = Configuration["Jwt:Key"];
+        if (jwtKey == null)
+        {
+            throw new ArgumentNullException(nameof(jwtKey), "Jwt:Key");
+        }
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var tokenDescriptor = new SecurityTokenDescriptor

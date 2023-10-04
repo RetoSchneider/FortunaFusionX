@@ -23,9 +23,32 @@ namespace fortunafusionx.backend
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
+
+
+            services.AddHttpsRedirection(options =>
+            {
+                options.HttpsPort = 7241;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
                     new MySqlServerVersion(new Version(8, 0, 34))));
+
+            var jwtKey = Configuration["Jwt:Key"];
+            if (string.IsNullOrEmpty(jwtKey))
+            {
+                throw new ArgumentNullException(nameof(jwtKey), "Jwt:Key");
+            }
 
             services.AddAuthentication(options =>
             {
@@ -42,7 +65,7 @@ namespace fortunafusionx.backend
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = Configuration["Jwt:Issuer"],
                     ValidAudience = Configuration["Jwt:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
                 };
             });
         }
@@ -58,6 +81,8 @@ namespace fortunafusionx.backend
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
