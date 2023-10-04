@@ -10,13 +10,11 @@ public static class JwtHelper
 {
     public static string GenerateJwtToken(User user, IConfiguration Configuration)
     {
-        // Check if user object is null
         if (user == null) 
         {
             throw new ArgumentNullException(nameof(user), "User cannot be null");
         }
 
-        // Check if user's Username is null or empty
         if (string.IsNullOrEmpty(user.Username))
         {
             throw new ArgumentNullException(nameof(user.Username), "Username cannot be null or empty");
@@ -25,7 +23,7 @@ public static class JwtHelper
         var jwtKey = Configuration["Jwt:Key"];
         if (jwtKey == null)
         {
-            throw new ArgumentNullException(nameof(jwtKey), "Jwt:Key must be set in configuration");
+            throw new ArgumentNullException(nameof(jwtKey), "Jwt:Key");
         }
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));

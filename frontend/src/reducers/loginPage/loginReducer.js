@@ -1,4 +1,7 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE } from "./actionTypes";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+} from "../../actions/loginPage/loginActions";
 
 const initialState = {
   token: null,

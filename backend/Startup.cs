@@ -23,6 +23,18 @@ namespace fortunafusionx.backend
         {
             services.AddControllers();
 
+            services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+        });
+
+
             services.AddHttpsRedirection(options =>
             {
                 options.HttpsPort = 7241;
@@ -35,7 +47,7 @@ namespace fortunafusionx.backend
             var jwtKey = Configuration["Jwt:Key"];
             if (string.IsNullOrEmpty(jwtKey))
             {
-                throw new ArgumentNullException(nameof(jwtKey), "Jwt:Key must be set in the configuration.");
+                throw new ArgumentNullException(nameof(jwtKey), "Jwt:Key");
             }
 
             services.AddAuthentication(options =>
@@ -69,6 +81,8 @@ namespace fortunafusionx.backend
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
 
