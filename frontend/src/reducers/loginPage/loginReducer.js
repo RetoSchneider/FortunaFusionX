@@ -1,21 +1,33 @@
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+} from "../../actions/loginPage/loginActions";
+
 const initialState = {
-  user: null,
-  isAuthenticated: false,
+  token: null,
+  error: null,
 };
 
-const loginReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "LOGIN_USER":
+    case LOGIN_SUCCESS:
       return {
         ...state,
-        user: action.payload,
-        isAuthenticated: true,
+        token: action.payload,
+        error: null,
       };
-    case "LOGOUT_USER":
-      return initialState;
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        token: null,
+        error: action.payload,
+      };
+    case "LOGOUT":
+      return {
+        ...state,
+        token: null,
+      };
     default:
       return state;
   }
 };
-
-export default loginReducer;

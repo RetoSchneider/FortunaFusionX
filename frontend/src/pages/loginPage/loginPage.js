@@ -4,9 +4,11 @@ import LoginRegisterBlock from "../../components/loginPage/loginRegisterBlock";
 
 const LoginPage = () => {
   return (
-    <div>
-      <LoginForm />
-      <LoginRegisterBlock />
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="space-y-4">
+        <LoginForm />
+        <LoginRegisterBlock />
+      </div>
     </div>
   );
 };

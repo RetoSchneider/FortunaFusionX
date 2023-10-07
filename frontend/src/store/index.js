@@ -1,10 +1,22 @@
-import { createStore, combineReducers } from "@reduxjs.toolkit";
-import loginReducer from "../reducers/loginReducer";
+import { legacy_createStore, applyMiddleware, combineReducers } from "redux";
+import { authReducer } from "../reducers/loginPage/loginReducer";
+import thunk from "redux-thunk";
+
+const initialStateFromLocalStorage = {
+  auth: {
+    token: localStorage.getItem("jwtToken") || null,
+    error: null,
+  },
+};
 
 const rootReducer = combineReducers({
-  login: loginReducer,
+  auth: authReducer,
 });
 
-const store = createStore(rootReducer);
+const store = legacy_createStore(
+  rootReducer,
+  initialStateFromLocalStorage,
+  applyMiddleware(thunk),
+);
 
 export default store;
