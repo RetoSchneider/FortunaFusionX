@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import backgroundImage from "../../assets/fortuna_fusion_x_logo_no_text.png";
 
-const UserProfile = () => {
+const MyProfile = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -77,4 +77,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default MyProfile;

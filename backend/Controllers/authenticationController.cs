@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AccountController : ControllerBase
+public class AuthenticationController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
     private readonly IConfiguration _configuration;
 
-    public AccountController(ApplicationDbContext context, IConfiguration configuration)
+    public AuthenticationController(ApplicationDbContext context, IConfiguration configuration)
     {
         _context = context;
         _configuration = configuration;

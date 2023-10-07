@@ -1,10 +1,10 @@
 import React from "react";
 import Logo from "../../assets/fortuna_fusion_x_logo_symbol_invisible_background.png";
-import "./mainPageBottomBar.css";
 
 const MainPageBottomBar = () => {
   return (
-    <div className="flex items-center justify-between flex-wrap w-full h-auto px-6 py-4 bg-teal-50">
+    <div className="grid lg:grid-cols-3 grid-cols-1 items-center w-full px-6 py-4 bg-teal-50 gap-6">
+      {" "}
       <div className="flex items-center space-x-8 text-sm">
         <img src={Logo} alt="Fortuna Fusion X Logo" className="h-10 w-auto" />
         <div className="flex space-x-6">
@@ -22,12 +22,12 @@ const MainPageBottomBar = () => {
           </a>
         </div>
       </div>
-
-      <button className="font-cabin font-bold text-lg text-black hover:text-gray-600 transform transition-transform duration-100 hover:scale-105 active:scale-95 mr-16">
-        Contact Developer
-      </button>
-
-      <div className="flex text-center text-sm">
+      <div className="justify-self-center">
+        <button className="font-cabin font-bold text-lg text-black hover:text-gray-600 transform transition-transform duration-100 hover:scale-105 active:scale-95">
+          Contact Developer
+        </button>
+      </div>
+      <div className="text-sm justify-self-end">
         © 2023 Fortuna Fusion X. All rights reserved.
       </div>
     </div>

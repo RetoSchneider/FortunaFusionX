@@ -3,7 +3,7 @@ import LoginPage from "./pages/loginPage/loginPage";
 import RegisterPage from "./pages/registerPage/registerPage";
 import MainPage from "./pages/mainPage/mainPage";
 import "./index.css";
-import ProfilePage from "./pages/profilePage/profilePage";
+import MyProfilePage from "./pages/myProfilePage/myProfilePage";
 
 function App() {
   return (
@@ -12,8 +12,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/register" element={<RegisterPage />} />
-          <Route path="/mainpage" element={<MainPage />} />
-          <Route path="/mainpage/myprofile" element={<ProfilePage />} />
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/main/myprofile" element={<MyProfilePage />} />
         </Routes>
       </div>
     </Router>

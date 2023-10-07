@@ -1,13 +1,13 @@
 import React from "react";
 import MainPageLayout from "../../components/mainPageLayout/mainPageLayout";
-import UserProfile from "../../components/profilePage/profilePage";
+import MyProfile from "../../components/myProfilePage/myProfilePage";
 
-const ProfilePage = () => {
+const MyProfilePage = () => {
   return (
     <MainPageLayout>
-      <UserProfile />
+      <MyProfile />
     </MainPageLayout>
   );
 };
 
-export default ProfilePage;
+export default MyProfilePage;
