@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/loginPage/loginActions";
 import logo from "../../assets/fortuna_fusion_x_logo.png";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = ({ registerUser, error }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,11 +23,15 @@ const RegisterForm = ({ registerUser, error }) => {
 
   return (
     <div className="flex flex-col items-center w-96 h-fit mx-auto rounded-lg shadow-md">
-      {error && <div className="error">{error}</div>}
-      <img src={logo} alt="Fortuna Fusion X Logo" className="mb-4 h-full" />
+      {error && <div className="error rounded-t-lg">{error}</div>}
+      <img
+        src={logo}
+        alt="Fortuna Fusion X Logo"
+        className="mb-4 h-full rounded-t-lg"
+      />
       <h2 className="mb-4 font-bold text-2xl font-cabin">Register</h2>
       <form className="w-full" onSubmit={handleSubmit}>
-        <div className="flex flex-col mb-3">
+        <div className="flex flex-col mb-8">
           <label className="mb-2 font-bold ml-10 font-cabin">Email:</label>
           <input
             type="email"
@@ -35,7 +42,7 @@ const RegisterForm = ({ registerUser, error }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="flex flex-col mb-3">
+        <div className="flex flex-col mb-8">
           <label className="mb-2 font-bold ml-10 font-cabin">Username:</label>
           <input
             type="text"
@@ -46,7 +53,7 @@ const RegisterForm = ({ registerUser, error }) => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="flex flex-col mb-3">
+        <div className="flex flex-col mb-8">
           <label className="mb-2 font-bold ml-10 font-cabin">Password:</label>
           <input
             type="password"
@@ -57,7 +64,7 @@ const RegisterForm = ({ registerUser, error }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="flex flex-col mb-3">
+        <div className="flex flex-col mb-8">
           <label className="mb-2 font-bold ml-10 font-cabin">
             Repeat Password:
           </label>
@@ -81,6 +88,7 @@ const RegisterForm = ({ registerUser, error }) => {
       <div className="flex justify-center items-center w-full mt-2 mb-5 font-cabin">
         <p className="text-gray-600 mr-4">Already have an account?</p>
         <button
+          onClick={() => navigate("/login")}
           className="bg-transparent border-none text-blue-500 font-cabin hover:underline
                     focus:outline-none transform transition-transform duration-100 hover:scale-105 active:scale-95"
         >

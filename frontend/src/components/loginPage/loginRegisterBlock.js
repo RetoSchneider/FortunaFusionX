@@ -1,15 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginRegisterBlock = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col items-center w-96 h-fit mx-auto mt-5 px-4 border rounded-lg shadow-md">
       <div className="flex justify-center items-center w-full mt-2 mb-5 font-cabin">
         <p className="text-gray-600 mr-4">Not registered yet?</p>
         <button
+          onClick={() => navigate("/login/register")}
           className="bg-transparent border-none text-blue-500 font-cabin hover:underline
                     focus:outline-none transform transition-transform duration-100 hover:scale-105 active:scale-95"
         >
-          {" "}
           Register
         </button>
       </div>
