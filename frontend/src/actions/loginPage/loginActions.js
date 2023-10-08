@@ -25,7 +25,7 @@ export const loginUser = (username, password) => {
         if (data.error) {
           dispatch(loginFailure(data.error));
         } else {
-          localStorage.setItem("jwtToken", data.token); // Save token to LocalStorage
+          localStorage.setItem("jwtToken", data.token);
           dispatch(loginSuccess(data.token));
         }
       })
