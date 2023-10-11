@@ -1,7 +1,8 @@
 import { legacy_createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import { authReducer } from "../reducers/loginPage/loginReducer";
-import profileReducer from "../reducers/myProfile/myProfileFetchUserReducer";
+import myProfileFetchUserReducer from "../reducers/myProfile/myProfileFetchUserReducer";
+import myProfileUpdateUserReducer from "../reducers/myProfile/myProfileUpdateUserReducer";
 
 const initialStateFromLocalStorage = {
   auth: {
@@ -13,11 +14,16 @@ const initialStateFromLocalStorage = {
     isLoading: true,
     error: null,
   },
+  myProfile: {
+    isUpdating: false,
+    updateError: null,
+  },
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  profile: profileReducer,
+  profile: myProfileFetchUserReducer,
+  myProfile: myProfileUpdateUserReducer,
 });
 
 const store = legacy_createStore(

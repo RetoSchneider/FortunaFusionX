@@ -2,11 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import backgroundImage from "../../assets/fortuna_fusion_x_logo_no_text.png";
 import { fetchProfile } from "../../actions/myProfile/myProfileFetchUserActions";
+import { updateUserDetails } from "../../actions/myProfile/myProfileUpdateUserActions";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
   const profileData = useSelector((state) => state.profile.data);
-  const isLoading = useSelector((state) => state.profile.isLoading);
+  const isUpdating = useSelector((state) => state.myProfile.isUpdating);
+  const updateError = useSelector((state) => state.myProfile.updateError);
 
   const [username, setUsername] = useState("");
   const [editUsername, setEditUsername] = useState(false);
@@ -60,9 +62,19 @@ const MyProfile = () => {
     setEmail(originalValues.email);
   };
 
-  if (isLoading) {
+  const handleSave = () => {
+    const updatedUser = {
+      id: profileData.id,
+      username,
+      email,
+    };
+
+    dispatch(updateUserDetails(updatedUser));
+  };
+
+  if (isUpdating) {
     return (
-      <div className="text-center font-semibold text-xl mt-8">Loading...</div>
+      <div className="text-center font-semibold text-xl mt-8">Updating...</div>
     );
   }
 
@@ -78,7 +90,7 @@ const MyProfile = () => {
 
         <div className="mb-5 p-3 bg-gray-100 rounded-md shadow-inner relative font-cabin">
           <label className="block text-gray-600 font-semibold mb-2">
-            Username
+            Username:
           </label>
           {editUsername ? (
             <input
@@ -104,7 +116,7 @@ const MyProfile = () => {
 
         <div className="mb-5 p-3 bg-gray-100 rounded-md shadow-inner relative font-cabin">
           <label className="block text-gray-600 font-semibold mb-2">
-            Email
+            Email:
           </label>
           {editEmail ? (
             <input
@@ -131,9 +143,7 @@ const MyProfile = () => {
         <div className="flex justify-start mt-4 space-x-2">
           <button
             className="px-7 py-0.5 bg-teal-500 text-white font-bold font-cabin rounded-md hover:bg-teal-400 transform transition-transform duration-100 hover:scale-105 active:scale-95 active:shadow-inner"
-            onClick={() => {
-              /* Dispatch save action here */
-            }}
+            onClick={handleSave}
           >
             Save
           </button>
@@ -144,6 +154,9 @@ const MyProfile = () => {
             Redo
           </button>
         </div>
+        {updateError && (
+          <div className="mt-4 text-red-500 font-semibold">{updateError}</div>
+        )}
       </div>
     </div>
   );
