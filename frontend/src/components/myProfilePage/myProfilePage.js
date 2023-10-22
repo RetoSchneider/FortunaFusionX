@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
 import { useDispatch, useSelector } from "react-redux";
 import backgroundImage from "../../assets/fortuna_fusion_x_logo_no_text.png";
+import defaultProfileImage from "../../assets/fortuna_fusion_x_defaultProfileImage.png";
 import { fetchProfile } from "../../actions/myProfile/myProfileFetchUserActions";
 import { updateUserDetails } from "../../actions/myProfile/myProfileUpdateUserActions";
 
@@ -19,10 +22,18 @@ const MyProfile = () => {
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
 
+  const [profileImage, setProfileImage] = useState(null);
+  const imageInputRef = useRef(null);
+
   const [originalValues, setOriginalValues] = useState({
     username: "",
     email: "",
+    profileImage: null,
   });
+
+  const [showCropper, setShowCropper] = useState(false);
+
+  const cropperRef = useRef(null);
 
   useEffect(() => {
     dispatch(fetchProfile());
@@ -57,6 +68,21 @@ const MyProfile = () => {
     }
   };
 
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      let img = e.target.files[0];
+      setProfileImage(URL.createObjectURL(img));
+      setShowCropper(true);
+    }
+  };
+
+  const handleCrop = () => {
+    const imageElement = cropperRef?.current;
+    const cropper = imageElement?.cropper;
+    setProfileImage(cropper.getCroppedCanvas().toDataURL());
+    setShowCropper(false);
+  };
+
   const handleRedo = () => {
     setUsername(originalValues.username);
     setEmail(originalValues.email);
@@ -87,6 +113,54 @@ const MyProfile = () => {
         <h1 className="mb-6 text-3xl font-cabin font-bold text-center text-black">
           My Profile
         </h1>
+
+        <div className="mb-6 relative">
+          {showCropper ? (
+            <div>
+              <Cropper
+                ref={cropperRef}
+                src={profileImage}
+                style={{ height: 400, width: "100%" }}
+                viewMode={1}
+                aspectRatio={1 / 1}
+                guides={false}
+                preview=".img-preview"
+                background={false}
+                dragMode="move"
+                cropBoxMovable={true}
+                cropBoxResizable={true}
+                rotatable={false}
+                zoomable={true}
+              />
+              <button
+                className="mt-4 px-7 py-0.5 bg-teal-500 text-white font-bold font-cabin rounded-md hover:bg-teal-400 transform transition-transform duration-100 hover:scale-105 active:scale-95 active:shadow-inner"
+                onClick={handleCrop}
+              >
+                Crop Image
+              </button>
+            </div>
+          ) : (
+            <>
+              <img
+                src={profileImage || defaultProfileImage}
+                alt="Profile"
+                className="mx-auto w-48 h-48 border-2 border-gray-100 object-cover rounded-lg"
+              />
+              <button
+                className="absolute bottom-1 right-1"
+                onClick={() => imageInputRef.current.click()}
+              >
+                🖉
+              </button>
+              <input
+                ref={imageInputRef}
+                type="file"
+                className="hidden"
+                onChange={handleImageChange}
+              />
+            </>
+          )}
+        </div>
 
         <div className="mb-5 p-3 bg-gray-100 rounded-md shadow-inner relative font-cabin">
           <label className="block text-gray-600 font-semibold mb-2">

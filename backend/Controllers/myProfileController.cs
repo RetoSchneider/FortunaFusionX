@@ -28,13 +28,15 @@ public class MyProfileController : ControllerBase
         {
             return NotFound();
         }
-        
-        return new UserDto 
+
+        var userDto = new UserDto 
         {
             Id = user.Id,
-            Username = user.Username,
-            Email = user.Email
+            Username = user.Username ?? "",
+            Email = user.Email ?? ""
         };
+
+        return userDto;
     }
 
     [HttpPut]
