@@ -83,6 +83,10 @@ const MyProfile = () => {
     setShowCropper(false);
   };
 
+  const handleCancelCrop = () => {
+    setShowCropper(false);
+};
+
   const handleRedo = () => {
     setUsername(originalValues.username);
     setEmail(originalValues.email);
@@ -137,6 +141,12 @@ const MyProfile = () => {
                 onClick={handleCrop}
               >
                 Crop Image
+              </button>
+              <button
+                className="mt-4 ml-4 px-7 py-0.5 bg-red-500 text-white font-bold font-cabin rounded-md hover:bg-red-400 transform transition-transform duration-100 hover:scale-105 active:scale-95 active:shadow-inner"
+                onClick={handleCancelCrop}
+              >
+                Cancel
               </button>
             </div>
           ) : (
@@ -222,7 +232,7 @@ const MyProfile = () => {
             Save
           </button>
           <button
-            className="px-7 py-0.5 bg-gray-400 text-white font-bold font-cabin rounded-md hover:bg-gray-500 transform transition-transform duration-100 hover:scale-105 active:scale-95 active:shadow-inner"
+            className="px-7 py-0.5 bg-red-500 text-white font-bold font-cabin rounded-md hover:bg-gray-500 transform transition-transform duration-100 hover:scale-105 active:scale-95 active:shadow-inner"
             onClick={handleRedo}
           >
             Redo
