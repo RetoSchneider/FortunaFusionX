@@ -83,19 +83,11 @@ const MyProfile = () => {
     const croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
     setProfileImage(croppedImageDataURL);
     setShowCropper(false);
-
-    const updatedUser = {
-      id: profileData.id,
-      username,
-      email,
-      profileImage,
-    };
-
-    dispatch(updateUserDetails(updatedUser));
   };
 
   const handleCancelCrop = () => {
     setShowCropper(false);
+    setProfileImage(originalValues.profileImage);
   };
 
   const handleRedo = () => {
@@ -111,7 +103,6 @@ const MyProfile = () => {
       email,
       profileImage,
     };
-
     dispatch(updateUserDetails(updatedUser));
   };
 
