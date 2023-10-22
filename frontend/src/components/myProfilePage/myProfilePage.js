@@ -90,7 +90,7 @@ const MyProfile = () => {
     setProfileImage(originalValues.profileImage);
   };
 
-  const handleRedo = () => {
+  const handleCancel = () => {
     setUsername(originalValues.username);
     setEmail(originalValues.email);
     setProfileImage(profileData.profileImage);
@@ -238,9 +238,9 @@ const MyProfile = () => {
           </button>
           <button
             className="px-7 py-0.5 bg-red-500 text-white font-bold font-cabin rounded-md hover:bg-gray-500 transform transition-transform duration-100 hover:scale-105 active:scale-95 active:shadow-inner"
-            onClick={handleRedo}
+            onClick={handleCancel}
           >
-            Redo
+            Cancel
           </button>
         </div>
         {updateError && (
