@@ -43,10 +43,11 @@ const MyProfile = () => {
     if (profileData) {
       setUsername(profileData.username);
       setEmail(profileData.email);
-
+      setProfileImage(profileData.profileImage || defaultProfileImage);
       setOriginalValues({
         username: profileData.username,
         email: profileData.email,
+        profileImage: profileData.profileImage || defaultProfileImage,
       });
     }
   }, [profileData]);
@@ -79,17 +80,28 @@ const MyProfile = () => {
   const handleCrop = () => {
     const imageElement = cropperRef?.current;
     const cropper = imageElement?.cropper;
-    setProfileImage(cropper.getCroppedCanvas().toDataURL());
+    const croppedImageDataURL = cropper.getCroppedCanvas().toDataURL();
+    setProfileImage(croppedImageDataURL);
     setShowCropper(false);
+
+    const updatedUser = {
+      id: profileData.id,
+      username,
+      email,
+      profileImage,
+    };
+
+    dispatch(updateUserDetails(updatedUser));
   };
 
   const handleCancelCrop = () => {
     setShowCropper(false);
-};
+  };
 
   const handleRedo = () => {
     setUsername(originalValues.username);
     setEmail(originalValues.email);
+    setProfileImage(profileData.profileImage);
   };
 
   const handleSave = () => {
@@ -97,6 +109,7 @@ const MyProfile = () => {
       id: profileData.id,
       username,
       email,
+      profileImage,
     };
 
     dispatch(updateUserDetails(updatedUser));
@@ -152,10 +165,11 @@ const MyProfile = () => {
           ) : (
             <>
               <img
-                src={profileImage || defaultProfileImage}
+                src={profileImage ? profileImage : defaultProfileImage}
                 alt="Profile"
                 className="mx-auto w-48 h-48 border-2 border-gray-100 object-cover rounded-lg"
               />
+
               <button
                 className="absolute bottom-1 right-1"
                 onClick={() => imageInputRef.current.click()}

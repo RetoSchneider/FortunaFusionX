@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,7 +34,8 @@ public class MyProfileController : ControllerBase
         {
             Id = user.Id,
             Username = user.Username ?? "",
-            Email = user.Email ?? ""
+            Email = user.Email ?? "",
+            ProfileImage = user.ProfileImage ?? ""
         };
 
         return userDto;
@@ -58,6 +60,7 @@ public class MyProfileController : ControllerBase
 
         user.Username = updatedUser.Username ?? user.Username;
         user.Email = updatedUser.Email ?? user.Email;
+        user.ProfileImage = updatedUser.ProfileImage ?? user.ProfileImage;
 
         await _context.SaveChangesAsync();
 
