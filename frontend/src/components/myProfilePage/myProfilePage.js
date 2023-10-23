@@ -35,6 +35,12 @@ const MyProfile = () => {
 
   const cropperRef = useRef(null);
 
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [editPassword, setEditPassword] = useState(false);
+  const passwordRef = useRef(null);
+
   useEffect(() => {
     dispatch(fetchProfile());
   }, [dispatch]);
@@ -117,7 +123,7 @@ const MyProfile = () => {
       className="flex flex-col items-center justify-center min-w-full min-h-full bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="w-full max-w-md p-8 m-4 bg-white shadow-xl rounded-lg border border-gray-200">
+      <div className="w-full max-w-md p-8 m-4 bg-white shadow-x1 rounded-lg border border-gray-200">
         <h1 className="mb-6 text-3xl font-cabin font-bold text-center text-black">
           My Profile
         </h1>
@@ -227,6 +233,54 @@ const MyProfile = () => {
           >
             🖉
           </button>
+        </div>
+
+        <div className="mb-5 p-3 bg-gray-100 rounded-md shadow-inner relative font-cabin">
+          <label className="block text-gray-600 font-semibold mb-2">
+            Password:
+          </label>
+          {editPassword ? (
+            <>
+              <input
+                ref={passwordRef}
+                className="w-full mb-2 p-2 border rounded-md bg-gray-200 opacity-70"
+                type="password"
+                placeholder="Current Password"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+              />
+              <input
+                className="w-full mb-2 p-2 border rounded-md bg-gray-200 opacity-70"
+                type="password"
+                placeholder="New Password"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+              />
+              <input
+                className="w-full p-2 border rounded-md bg-gray-200 opacity-70"
+                type="password"
+                placeholder="Confirm New Password"
+                value={confirmNewPassword}
+                onChange={(e) => setConfirmNewPassword(e.target.value)}
+                onBlur={() => setEditPassword(false)}
+              />
+              <button
+                className="absolute top-2 right-2 text-red-500 hover:text-black transition duration-300"
+                onClick={() => setEditPassword(false)}
+              >
+                ✕
+              </button>
+            </>
+          ) : (
+            <div className="flex justify-between">
+              <button
+                className="text-teal-500 hover:text-teal-400 transition duration-300 font-bold"
+                onClick={() => setEditPassword(true)}
+              >
+                Change Password
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="flex justify-start mt-4 space-x-2">
