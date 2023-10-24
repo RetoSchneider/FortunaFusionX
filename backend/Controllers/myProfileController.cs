@@ -66,4 +66,34 @@ public class MyProfileController : ControllerBase
 
         return Ok();
     }
+
+    [HttpPut("changePassword")]
+    public async Task<ActionResult> ChangePassword(PasswordChangeDto passwordChange)
+    {
+        int currentUserId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value ?? "0");
+        var user = await _context.Users.FindAsync(currentUserId);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        if (!BCrypt.Net.BCrypt.Verify(passwordChange.CurrentPassword, user.PasswordHash))
+        {
+            return BadRequest("Invalid current password");
+        }
+
+        if (passwordChange.NewPassword != passwordChange.ValidatePassword)
+        {
+            return BadRequest("New password and validation password do not match.");
+        }
+
+        user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(passwordChange.NewPassword);
+
+        await _context.SaveChangesAsync();
+
+        return Ok();
+    }
+
+
 }

@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import { authReducer } from "../reducers/loginPage/loginReducer";
 import myProfileFetchUserReducer from "../reducers/myProfile/myProfileFetchUserReducer";
 import myProfileUpdateUserReducer from "../reducers/myProfile/myProfileUpdateUserReducer";
+import myProfileChangePasswordReducer from "../reducers/myProfile/myProfileChangePasswordReducer"; // 1. Import the new reducer
 
 const initialStateFromLocalStorage = {
   auth: {
@@ -18,12 +19,17 @@ const initialStateFromLocalStorage = {
     isUpdating: false,
     updateError: null,
   },
+  passwordChange: {
+    isUpdating: false,
+    updateError: null,
+  },
 };
 
 const rootReducer = combineReducers({
   auth: authReducer,
   profile: myProfileFetchUserReducer,
   myProfile: myProfileUpdateUserReducer,
+  passwordChange: myProfileChangePasswordReducer,
 });
 
 const store = legacy_createStore(

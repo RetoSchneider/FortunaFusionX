@@ -6,6 +6,7 @@ import backgroundImage from "../../assets/fortuna_fusion_x_logo_no_text.png";
 import defaultProfileImage from "../../assets/fortuna_fusion_x_defaultProfileImage.png";
 import { fetchProfile } from "../../actions/myProfile/myProfileFetchUserActions";
 import { updateUserDetails } from "../../actions/myProfile/myProfileUpdateUserActions";
+import { changePassword } from "../../actions/myProfile/myProfileChangePasswordAction";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
@@ -100,6 +101,10 @@ const MyProfile = () => {
     setUsername(originalValues.username);
     setEmail(originalValues.email);
     setProfileImage(profileData.profileImage);
+    setCurrentPassword("");
+    setNewPassword("");
+    setConfirmNewPassword("");
+    setEditPassword(false);
   };
 
   const handleSave = () => {
@@ -110,6 +115,19 @@ const MyProfile = () => {
       profileImage,
     };
     dispatch(updateUserDetails(updatedUser));
+
+    if (currentPassword && newPassword && confirmNewPassword) {
+      if (newPassword === confirmNewPassword) {
+        const passwordData = {
+          CurrentPassword: currentPassword,
+          NewPassword: newPassword,
+          ValidatePassword: confirmNewPassword,
+        };
+        dispatch(changePassword(passwordData));
+      } else {
+        alert("New Password and Confirm New Password do not match");
+      }
+    }
   };
 
   if (isUpdating) {
@@ -262,11 +280,15 @@ const MyProfile = () => {
                 placeholder="Confirm New Password"
                 value={confirmNewPassword}
                 onChange={(e) => setConfirmNewPassword(e.target.value)}
-                onBlur={() => setEditPassword(false)}
               />
               <button
                 className="absolute top-2 right-2 text-red-500 hover:text-black transition duration-300"
-                onClick={() => setEditPassword(false)}
+                onClick={() => {
+                  setCurrentPassword("");
+                  setNewPassword("");
+                  setConfirmNewPassword("");
+                  setEditPassword(false);
+                }}
               >
                 ✕
               </button>
