@@ -1,13 +1,18 @@
 import { legacy_createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
-import { authReducer } from "../reducers/loginPage/loginReducer";
+import { loginReducer } from "../reducers/loginPage/loginReducer";
+import { registerReducer } from "../reducers/registerPage/registerReducer";
 import myProfileFetchUserReducer from "../reducers/myProfile/myProfileFetchUserReducer";
 import myProfileUpdateUserReducer from "../reducers/myProfile/myProfileUpdateUserReducer";
-import myProfileChangePasswordReducer from "../reducers/myProfile/myProfileChangePasswordReducer"; // 1. Import the new reducer
+import myProfileChangePasswordReducer from "../reducers/myProfile/myProfileChangePasswordReducer";
 
 const initialStateFromLocalStorage = {
-  auth: {
+  login: {
     token: localStorage.getItem("jwtToken") || null,
+    error: null,
+  },
+  register: {
+    isRegistered: false,
     error: null,
   },
   profile: {
@@ -26,7 +31,8 @@ const initialStateFromLocalStorage = {
 };
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  login: loginReducer,
+  register: registerReducer,
   profile: myProfileFetchUserReducer,
   myProfile: myProfileUpdateUserReducer,
   passwordChange: myProfileChangePasswordReducer,

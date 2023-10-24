@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/loginPage/loginActions";
+import { registerUser } from "../../actions/registerPage/registerActions";
 import logo from "../../assets/fortuna_fusion_x_logo.png";
 import { useNavigate } from "react-router-dom";
 
@@ -100,7 +100,7 @@ const RegisterForm = ({ registerUser, error }) => {
 };
 
 const mapStateToProps = (state) => ({
-  error: state.auth.error,
+  error: state.register.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

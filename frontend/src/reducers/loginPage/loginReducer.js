@@ -3,12 +3,12 @@ import {
   LOGIN_FAILURE,
 } from "../../actions/loginPage/loginActions";
 
-const initialState = {
+const initialLoginState = {
   token: null,
   error: null,
 };
 
-export const authReducer = (state = initialState, action) => {
+export const loginReducer = (state = initialLoginState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return {
