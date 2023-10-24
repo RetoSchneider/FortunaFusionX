@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../../actions/loginPage/loginActions";
+import { registerUser } from "../../actions/registerPage/registerActions";
 import logo from "../../assets/fortuna_fusion_x_logo.png";
 import { useNavigate } from "react-router-dom";
 
-const RegisterForm = ({ registerUser, error }) => {
+const RegisterForm = ({ registerUser, error, shouldRedirect }) => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -20,6 +20,12 @@ const RegisterForm = ({ registerUser, error }) => {
       alert("Passwords do not match!");
     }
   };
+
+  useEffect(() => {
+    if (shouldRedirect) {
+      navigate("/login");
+    }
+  }, [shouldRedirect, navigate]);
 
   return (
     <div className="flex flex-col items-center w-96 h-fit mx-auto rounded-lg shadow-md">
@@ -100,7 +106,8 @@ const RegisterForm = ({ registerUser, error }) => {
 };
 
 const mapStateToProps = (state) => ({
-  error: state.auth.error,
+  error: state.register.error,
+  shouldRedirect: state.register.shouldRedirect,
 });
 
 const mapDispatchToProps = (dispatch) => ({

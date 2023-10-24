@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import LoginPage from "./pages/loginPage/loginPage";
 import RegisterPage from "./pages/registerPage/registerPage";
 import MainPage from "./pages/mainPage/mainPage";
@@ -10,6 +10,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/register" element={<RegisterPage />} />
           <Route path="/main" element={<MainPage />} />
@@ -19,4 +20,5 @@ function App() {
     </Router>
   );
 }
+
 export default App;

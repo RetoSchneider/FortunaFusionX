@@ -37,7 +37,6 @@ namespace fortunafusionx.backend
 
             services.AddHttpsRedirection(options =>
             {
-                options.HttpsPort = 7241;
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
