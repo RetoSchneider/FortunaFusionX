@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/login" replace />} index />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/login/register" element={<RegisterPage />} />
           <Route path="/main" element={<MainPage />} />
