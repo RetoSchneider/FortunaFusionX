@@ -71,8 +71,8 @@ const LoginForm = ({ loginUser, error, token }) => {
 };
 
 const mapStateToProps = (state) => ({
-  error: state.auth.error,
-  token: state.auth.token,
+  error: state.login.error,
+  token: state.login.token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
