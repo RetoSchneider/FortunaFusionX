@@ -9,10 +9,7 @@ const MainPageBottomBar = () => {
         <img src={Logo} alt="Fortuna Fusion X Logo" className="h-10 w-auto" />
         <div className="flex space-x-6">
           <a href="/about" className="hover:underline">
-            About Us
-          </a>
-          <a href="/contact" className="hover:underline">
-            Contact
+            About Me
           </a>
           <a href="/terms" className="hover:underline">
             Terms of Service

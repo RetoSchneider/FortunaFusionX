@@ -21,18 +21,19 @@ const RightSideBar = () => {
   }, []);
 
   return (
-    <div className="relative h-[calc(100vh -120px)] border-t border-b border-gray-300">
+    <div className="relative h-[calc(100vh -120px)] border-t border-b border-y-gray-200">
       <div
         className={`bg-teal-50 p-4 border-l border-gray-300 h-full transform transition-all duration-700 ease-in-out shadow-md ${
           isSidebarVisible ? "w-[250px]" : "w-[40px]"
         }`}
       >
-        <div 
+        <div
           className={`content space-y-6 text-left transition-opacity duration-700 ease-in-out transition-max-height overflow-hidden ${
-            isSidebarVisible ? "opacity-100 max-h-[calc(100vh-120px)]" : "opacity-0 max-h-0"
+            isSidebarVisible
+              ? "opacity-100 max-h-[calc(100vh-120px)]"
+              : "opacity-0 max-h-0"
           }`}
-        >
-        </div>
+        ></div>
         <button
           onClick={() => setIsSidebarVisible(!isSidebarVisible)}
           className={`absolute top-0 left-0 mt-1 ml-2 font-extrabold z-10 flex items-center justify-center transition-transform duration-500 ${
@@ -40,7 +41,7 @@ const RightSideBar = () => {
           } hover:text-teal-700`}
           style={{
             transform: isSidebarVisible ? "rotate(-45deg)" : "rotate(360deg)",
-            fontSize: '2rem'
+            fontSize: "2rem",
           }}
         >
           +

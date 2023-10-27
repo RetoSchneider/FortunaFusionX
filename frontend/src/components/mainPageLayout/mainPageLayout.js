@@ -8,12 +8,17 @@ const MainPageLayout = ({ children }) => {
   return (
     <div className="flex flex-col h-screen relative">
       <TopBar />
-      <div className="flex-grow flex overflow-y-auto">
-        <LeftSideBar />
+      <div className="flex-grow flex overflow-hidden">
+        {" "}
+        <div className="flex flex-shrink-0 overflow-y-auto">
+          <LeftSideBar />
+        </div>
         <div className="flex-grow overflow-y-auto">{children}</div>
-        <RightSideBar />
+        <div className="flex flex-shrink-0 overflow-y-auto">
+          <RightSideBar />
+        </div>
       </div>
-      <div className="bottom-0 w-screen relative">
+      <div className="bottom-0 relative">
         <BottomBar />
       </div>
     </div>
