@@ -21,9 +21,9 @@ const RightSideBar = () => {
   }, []);
 
   return (
-    <div className="relative h-[calc(100vh -120px)] border-t border-b border-y-gray-200">
+    <div className="relative h-[calc(100vh -120px)] border-t border-b border-gray-200">
       <div
-        className={`bg-teal-50 p-4 border-l border-gray-300 h-full transform transition-all duration-700 ease-in-out shadow-md ${
+        className={`bg-teal-50 p-4 h-full transform transition-all duration-700 ease-in-out ${
           isSidebarVisible ? "w-[250px]" : "w-[40px]"
         }`}
       >
